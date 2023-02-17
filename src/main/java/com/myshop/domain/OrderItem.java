@@ -1,29 +1,37 @@
 package com.myshop.domain;
 
+import com.myshop.domain.complexkey.OrderItemComplexKey;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.IdClass;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-import static jakarta.persistence.FetchType.*;
-
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@IdClass(OrderItemComplexKey.class)
 public class OrderItem implements Serializable {
     @Id
-    @ManyToOne(fetch = LAZY)
-    private Order orderId;
+    @Column(name = "order_id")
+    private String orderId;
 
     @Id
-    @ManyToOne(fetch = LAZY)
-    private Item itemId;
+    @Column(name = "item_id")
+    private String itemId;
 
-    @ManyToOne(fetch = LAZY)
-    private Member memberId;
+    @Column(name = "member_id")
+    private String memberId;
 
+    @Column(name = "order_price")
     private int orderPrice;
 
+    @Column(name = "order_quantity")
     private int orderQuantity;
 }

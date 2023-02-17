@@ -1,33 +1,44 @@
 package com.myshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-import static jakarta.persistence.FetchType.LAZY;
-
 @Entity
 @Getter
+@EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review {
 
     @Id
-    @ManyToOne(fetch = LAZY)
-    private Item itemId;
+    @Column(name = "item_id")
+    private String itemId;
 
     @Id
-    @ManyToOne(fetch = LAZY)
-    private Member memberId;
+    @Column(name = "member_id")
+    private String memberId;
 
+    @Column(name = "image")
     private String image;
 
     @Lob
+    @Column(name = "comment")
+    @NotNull
     private String comment;
 
+    @Column(name = "stars")
+    @NotNull
     private int stars;
 
+    @Column(name = "review_date")
+    @NotNull
     private LocalDateTime reviewDate;
 }

@@ -1,33 +1,43 @@
 package com.myshop.domain;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@EqualsAndHashCode
-@IdClass(Cart.class)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "member_id")
     private String memberId;
 
-    @Column(nullable = false)
+    @Column(name = "member_password")
+    @NotNull
     private String memberPassword;
 
-    @Column(nullable = false)
+    @Column(name = "address")
+    @NotNull
     private String address;
 
+    @Column(name = "birth_date")
     private String birthDate;
 
-    @Column(nullable = false)
+    @Column(name = "gender")
+    @NotNull
     private String gender;
 
-    @Column(nullable = false)
+    @Column(name = "name")
+    @NotNull
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "phone")
+    @NotNull
     private String phone;
 
 }

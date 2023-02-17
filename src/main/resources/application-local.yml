@@ -2,12 +2,12 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:local;MODE=MySQL;DATABASE_TO_LOWER=TRUE;
+    url: jdbc:h2:mem:local;DB_CLOSE_DELAY=-1
     username: sa
 
-#jpa:
-#  database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-#  generate-ddl: false
-#  defer-datasource-initialization: true
-#  hibernate:
-#    ddl-auto: none
+  jpa:
+    database: h2
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+      show_sql: true
